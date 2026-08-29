@@ -2,5 +2,7 @@ bin/
 obj/
 *.user
 .vs/
+appsettings.Development.json
 appsettings.*.local.json
 uploads/
+.env

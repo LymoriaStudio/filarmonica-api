@@ -5,15 +5,14 @@
       "Microsoft.AspNetCore": "Warning"
     }
   },
-  "AllowedHosts": "*",
   "Database": {
     "Provider": "Postgres"
   },
   "ConnectionStrings": {
-    "DefaultConnection": ""
+    "DefaultConnection": "Host=localhost;Port=5432;Database=filarmonica_dev;Username=postgres;Password=postgres"
   },
   "Jwt": {
-    "Secret": "",
+    "Secret": "dev-only-secret-troque-em-producao-1234567890",
     "Issuer": "FilarmonicaApi",
     "Audience": "FilarmonicaClient",
     "AccessTokenMinutes": 30,
@@ -21,9 +20,9 @@
   },
   "FileStorage": {
     "BasePath": "uploads",
-    "PublicBaseUrl": ""
+    "PublicBaseUrl": "http://localhost:5080/media"
   },
   "Cors": {
-    "AllowedOrigins": []
+    "AllowedOrigins": ["http://localhost:5173"]
   }
 }

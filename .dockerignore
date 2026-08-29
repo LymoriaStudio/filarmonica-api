@@ -1,0 +1,9 @@
+**/bin/
+**/obj/
+**/.vs/
+**/uploads/
+**/appsettings.Development.json
+**/appsettings.*.local.json
+.git/
+.gitignore
+README.md
