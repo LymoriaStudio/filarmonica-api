@@ -1,0 +1,24 @@
+using FilarmonicaMetais.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+
+namespace FilarmonicaMetais.Infrastructure.Persistence.Configurations;
+
+public class UsuarioConfiguration : IEntityTypeConfiguration<Usuario>
+{
+    public void Configure(EntityTypeBuilder<Usuario> builder)
+    {
+        builder.ToTable("usuarios");
+
+        builder.Property(u => u.FullName).HasMaxLength(200).IsRequired();
+        builder.Property(u => u.Email).HasMaxLength(320).IsRequired();
+        builder.Property(u => u.PasswordHash).IsRequired();
+        builder.Property(u => u.Role).HasConversion<string>().HasMaxLength(20);
+        builder.Property(u => u.JobTitle).HasMaxLength(150);
+        builder.Property(u => u.RefreshToken).HasMaxLength(200);
+
+        // E-mail é o identificador de login — único, e a busca por ele
+        // (GetByEmailAsync) sempre normaliza para minúsculas (regra #7).
+        builder.HasIndex(u => u.Email).IsUnique();
+    }
+}

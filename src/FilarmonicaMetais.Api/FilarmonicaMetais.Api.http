@@ -1,0 +1,6 @@
+@FilarmonicaMetais.Api_HostAddress = http://localhost:5228
+
+GET {{FilarmonicaMetais.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
