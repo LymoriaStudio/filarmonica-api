@@ -26,44 +26,52 @@ FilarmonicaMetais.sln
 
 ## Estado atual
 
-✅ Feito:
+✅ Feito — **46 endpoints** registrados e verificados no Swagger:
 - Domain: 13 entidades, 8 enums, 2 value objects (`Endereco`, `RedesSociais`)
-- Application: `IUnitOfWork` + 13 interfaces de repositório; casos de uso
-  implementados: `AuthService` (login/refresh/logout/me/change-password),
-  6 serviços de leitura pública (banners, instrumentos, eventos, professores,
-  cursos, depoimentos), 2 serviços de formulário público (interessados,
-  pedidos de apoio)
 - Infrastructure: `AppDbContext` + 13 configurations; 13 repositórios
   concretos + `UnitOfWork`; `JwtTokenService`, `BCryptPasswordHasher`,
   `CurrentUserService`, `LocalFileStorageService`; seleção de provider
   Postgres/SqlServer por configuração
-- Api: `Program.cs` completo (JWT Bearer, política `AdminOnly`, CORS,
-  Swagger com cadeado só nas rotas `[Authorize]`, `ExceptionHandlingMiddleware`,
-  migration + seed do admin automáticos no boot); 9 controllers com endpoints
-  reais (`/api/auth/*`, `/api/banners/ativos`, `/api/instrumentos`,
-  `/api/eventos`, `/api/professores`, `/api/cursos`, `/api/depoimentos`,
-  `POST /api/interessados`, `POST /api/pedidos-apoio`)
 - Migration `InitialCreate` gerada e validada (script SQL) em **Postgres e
   SQL Server**, a partir do mesmo modelo
+- **Auth**: login, refresh, logout, me, change-password (exige senha atual)
+- **Leitura pública**: banners ativos, instrumentos (com galeria), eventos
+  (paginado), professores, cursos, depoimentos
+- **Formulários públicos**: `POST` interessados, `POST` pedidos de apoio
+- **CRUD administrativo** (`[Authorize]`), todos com endpoints reais:
+  - Banners — inclui a lógica de reordenação (empurra em cadeia ao colidir
+    com um `DisplayOrder` já ocupado, port do que foi implementado no painel)
+  - Eventos, Professores, Cursos (valida que o `ProfessorId` existe),
+    Depoimentos
+  - Instrumentos — CRUD + endpoints dedicados para adicionar/remover foto
+    da galeria (`POST`/`DELETE /fotos`)
+  - Alunos — paginado com busca (nome/e-mail) e filtro de status, endpoint
+    `PATCH /status` dedicado para arquivar/desarquivar
+  - Interessados e Pedidos de Apoio — listagem + `PATCH /status`
+  - **Doações e Usuários** — `[Authorize(Policy = "AdminOnly")]`, mesma
+    restrição que o painel já aplica no front, agora também no servidor
+  - Media — upload (`multipart/form-data`), listagem, checagem de uso
+    (substitui `checkMediaUsage` do front, cruzando contra todas as
+    entidades com campo de imagem) e exclusão (recusa se o arquivo estiver
+    em uso)
 - `Dockerfile` multi-stage + `entrypoint.sh` para Railway (volume de uploads,
   usuário sem privilégio)
 - Solução compila limpa (`dotnet build`, 0 erros/avisos) e **foi testada de
-  pé**: `dotnet run` sobe, `/swagger/v1/swagger.json` responde 200,
-  `GET /api/depoimentos` percorre toda a cadeia (rota → controller → serviço
-  → repositório → EF Core → tentativa real de conexão Postgres) e devolve
-  erro estruturado pelo middleware em vez de stack trace cru
+  pé** duas vezes: `dotnet run` sobe, `/swagger/v1/swagger.json` responde 200
+  e lista os 46 endpoints, `GET /api/depoimentos` percorre toda a cadeia
+  (rota → controller → serviço → repositório → EF Core → tentativa real de
+  conexão Postgres) e devolve erro estruturado pelo middleware em vez de
+  stack trace cru quando o banco não está acessível
 
 ❌ Falta:
-- Controllers de **CRUD administrativo** (`[Authorize]`) para banners,
-  eventos, instrumentos, professores, cursos, depoimentos, alunos,
-  interessados, pedidos de apoio, doações — hoje só existe leitura pública
-  e os dois formulários de criação
-- Endpoint de upload/listagem de `MediaAsset`
-- Política `AdminOnly` aplicada a doações e usuários (a policy existe no
-  `Program.cs`, falta usá-la nos controllers admin)
 - Migração de dados do Supabase (ETL) — Fase 9 do plano
 - Fase 0 (segurança) e Fase 1 (refactor das 53 chamadas diretas ao Supabase
   no front) — vivem no repositório `filarmonica-figma`, não neste
+- Testes automatizados (unitários/integração) — nada foi escrito ainda
+- Refresh token guardado só no banco (`Usuario.RefreshToken`), sem rotação
+  por dispositivo — suficiente para o uso atual (poucos usuários admin/editor),
+  mas vale revisar se o painel passar a ter múltiplas sessões simultâneas
+  relevantes
 
 ## Rodando localmente
 

@@ -20,6 +20,19 @@ public static class DependencyInjection
         services.AddScoped<IInteressadoService, InteressadoService>();
         services.AddScoped<IPedidoApoioService, PedidoApoioService>();
 
+        services.AddScoped<IBannerAdminService, BannerAdminService>();
+        services.AddScoped<IEventoAdminService, EventoAdminService>();
+        services.AddScoped<IInstrumentoAdminService, InstrumentoAdminService>();
+        services.AddScoped<IProfessorAdminService, ProfessorAdminService>();
+        services.AddScoped<ICursoAdminService, CursoAdminService>();
+        services.AddScoped<IDepoimentoAdminService, DepoimentoAdminService>();
+        services.AddScoped<IAlunoAdminService, AlunoAdminService>();
+        services.AddScoped<IInteressadoAdminService, InteressadoAdminService>();
+        services.AddScoped<IPedidoApoioAdminService, PedidoApoioAdminService>();
+        services.AddScoped<IDoacaoAdminService, DoacaoAdminService>();
+        services.AddScoped<IUsuarioAdminService, UsuarioAdminService>();
+        services.AddScoped<IMediaAdminService, MediaAdminService>();
+
         return services;
     }
 }
