@@ -17,6 +17,10 @@ public class AdminDepoimentosController : ControllerBase
         _service = service;
     }
 
+    [HttpGet]
+    public async Task<ActionResult<IReadOnlyList<AdminDepoimentoDto>>> GetAll(CancellationToken ct) =>
+        Ok(await _service.GetAllAsync(ct));
+
     [HttpPost]
     public async Task<IActionResult> Create(CreateDepoimentoRequest request, CancellationToken ct)
     {

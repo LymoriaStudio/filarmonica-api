@@ -10,4 +10,7 @@ public class DepoimentoRepository : GenericRepository<Depoimento>, IDepoimentoRe
 
     public async Task<IReadOnlyList<Depoimento>> GetOrdenadosAsync(CancellationToken ct = default) =>
         await DbSet.AsNoTracking().OrderBy(d => d.DisplayOrder).ToListAsync(ct);
+
+    public async Task<IReadOnlyList<Depoimento>> GetAtivosOrdenadosAsync(CancellationToken ct = default) =>
+        await DbSet.AsNoTracking().Where(d => d.Active).OrderBy(d => d.DisplayOrder).ToListAsync(ct);
 }

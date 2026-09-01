@@ -1,6 +1,5 @@
 using FilarmonicaMetais.Application.Common.Exceptions;
 using FilarmonicaMetais.Application.DTOs.Admin;
-using FilarmonicaMetais.Application.DTOs.Site;
 using FilarmonicaMetais.Application.Interfaces.Repositories;
 using FilarmonicaMetais.Application.Interfaces.Services;
 using FilarmonicaMetais.Domain.Entities;
@@ -16,7 +15,13 @@ public class DepoimentoAdminService : IDepoimentoAdminService
         _uow = uow;
     }
 
-    public async Task<DepoimentoDto> CreateAsync(CreateDepoimentoRequest request, CancellationToken ct = default)
+    public async Task<IReadOnlyList<AdminDepoimentoDto>> GetAllAsync(CancellationToken ct = default)
+    {
+        var depoimentos = await _uow.Depoimentos.GetOrdenadosAsync(ct);
+        return depoimentos.Select(ToDto).ToList();
+    }
+
+    public async Task<AdminDepoimentoDto> CreateAsync(CreateDepoimentoRequest request, CancellationToken ct = default)
     {
         var depoimento = new Depoimento();
         Apply(depoimento, request);
@@ -27,7 +32,7 @@ public class DepoimentoAdminService : IDepoimentoAdminService
         return ToDto(depoimento);
     }
 
-    public async Task<DepoimentoDto> UpdateAsync(Guid id, UpdateDepoimentoRequest request, CancellationToken ct = default)
+    public async Task<AdminDepoimentoDto> UpdateAsync(Guid id, UpdateDepoimentoRequest request, CancellationToken ct = default)
     {
         var depoimento = await _uow.Depoimentos.GetByIdAsync(id, ct) ?? throw new NotFoundException(nameof(Depoimento), id);
 
@@ -54,14 +59,17 @@ public class DepoimentoAdminService : IDepoimentoAdminService
         d.TagDetalhe = request.TagDetalhe;
         d.Texto = request.Texto;
         d.DisplayOrder = request.DisplayOrder;
+        d.Active = request.Active;
     }
 
-    private static DepoimentoDto ToDto(Depoimento d) => new()
+    private static AdminDepoimentoDto ToDto(Depoimento d) => new()
     {
         Id = d.Id,
         Nome = d.Nome,
         Tag = d.Tag,
         TagDetalhe = d.TagDetalhe,
         Texto = d.Texto,
+        DisplayOrder = d.DisplayOrder,
+        Active = d.Active,
     };
 }

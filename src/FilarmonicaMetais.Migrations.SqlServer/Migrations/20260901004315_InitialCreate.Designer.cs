@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FilarmonicaMetais.Migrations.SqlServer.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260828012441_InitialCreate")]
+    [Migration("20260901004315_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -226,6 +226,9 @@ namespace FilarmonicaMetais.Migrations.SqlServer.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("Active")
+                        .HasColumnType("bit");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");

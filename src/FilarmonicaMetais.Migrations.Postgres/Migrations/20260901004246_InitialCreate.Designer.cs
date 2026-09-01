@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace FilarmonicaMetais.Migrations.Postgres.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260828012421_InitialCreate")]
+    [Migration("20260901004246_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -226,6 +226,9 @@ namespace FilarmonicaMetais.Migrations.Postgres.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
+
+                    b.Property<bool>("Active")
+                        .HasColumnType("boolean");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
