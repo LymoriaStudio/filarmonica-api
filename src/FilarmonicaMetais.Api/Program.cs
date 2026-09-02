@@ -8,10 +8,12 @@ using FilarmonicaMetais.Domain.Entities;
 using FilarmonicaMetais.Domain.Enums;
 using FilarmonicaMetais.Infrastructure;
 using FilarmonicaMetais.Infrastructure.Auth;
+using FilarmonicaMetais.Infrastructure.FileStorage;
 using FilarmonicaMetais.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 
@@ -95,6 +97,19 @@ app.UseSwagger();
 app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
+
+// Serve os arquivos enviados via IFileStorageService (fotos, PDFs) como estático,
+// no mesmo caminho que LocalFileStorageService.ResolvePublicUrl monta as URLs
+// (FileStorage:PublicBaseUrl + "/" + caminho relativo). Sem isso, ResolvePublicUrl
+// devolvia uma URL que nada respondia.
+var fileStorageOptions = app.Services.GetRequiredService<Microsoft.Extensions.Options.IOptions<LocalFileStorageOptions>>().Value;
+var uploadsPath = Path.GetFullPath(fileStorageOptions.BasePath);
+Directory.CreateDirectory(uploadsPath);
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(uploadsPath),
+    RequestPath = "/media",
+});
 
 app.UseCors("Default");
 
