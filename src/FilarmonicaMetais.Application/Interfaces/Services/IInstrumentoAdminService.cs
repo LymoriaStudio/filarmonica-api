@@ -4,6 +4,7 @@ namespace FilarmonicaMetais.Application.Interfaces.Services;
 
 public interface IInstrumentoAdminService
 {
+    Task<IReadOnlyList<AdminInstrumentoDto>> GetAllAsync(CancellationToken ct = default);
     Task<AdminInstrumentoDto> GetByIdAsync(Guid id, CancellationToken ct = default);
     Task<AdminInstrumentoDto> CreateAsync(CreateInstrumentoRequest request, CancellationToken ct = default);
     Task<AdminInstrumentoDto> UpdateAsync(Guid id, UpdateInstrumentoRequest request, CancellationToken ct = default);

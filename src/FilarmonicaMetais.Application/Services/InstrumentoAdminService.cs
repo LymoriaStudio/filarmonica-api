@@ -15,6 +15,14 @@ public class InstrumentoAdminService : IInstrumentoAdminService
         _uow = uow;
     }
 
+    public async Task<IReadOnlyList<AdminInstrumentoDto>> GetAllAsync(CancellationToken ct = default)
+    {
+        // GetAllAsync do repositório genérico já inclui a galeria (InstrumentoRepository
+        // sobrescreve isso) — mesma listagem que a leitura pública usa.
+        var instrumentos = await _uow.Instrumentos.GetAllAsync(ct);
+        return instrumentos.Select(ToDto).ToList();
+    }
+
     public async Task<AdminInstrumentoDto> GetByIdAsync(Guid id, CancellationToken ct = default)
     {
         var instrumento = await _uow.Instrumentos.GetByIdComGaleriaAsync(id, ct)

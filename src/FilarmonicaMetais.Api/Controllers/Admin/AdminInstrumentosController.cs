@@ -17,6 +17,10 @@ public class AdminInstrumentosController : ControllerBase
         _service = service;
     }
 
+    [HttpGet]
+    public async Task<ActionResult<IReadOnlyList<AdminInstrumentoDto>>> GetAll(CancellationToken ct) =>
+        Ok(await _service.GetAllAsync(ct));
+
     [HttpGet("{id:guid}")]
     public async Task<ActionResult<AdminInstrumentoDto>> GetById(Guid id, CancellationToken ct) =>
         Ok(await _service.GetByIdAsync(id, ct));
