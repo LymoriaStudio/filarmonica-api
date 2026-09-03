@@ -111,6 +111,7 @@ public class AlunoAdminService : IAlunoAdminService
     private static AdminAlunoDto ToDto(Aluno a) => new()
     {
         Id = a.Id,
+        CreatedAt = a.CreatedAt,
         Foto = a.Foto,
         Nome = a.Nome,
         DataNascimento = a.DataNascimento,

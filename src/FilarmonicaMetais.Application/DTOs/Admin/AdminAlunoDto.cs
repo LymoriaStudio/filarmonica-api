@@ -3,6 +3,7 @@ namespace FilarmonicaMetais.Application.DTOs.Admin;
 public class AdminAlunoDto
 {
     public Guid Id { get; set; }
+    public DateTime CreatedAt { get; set; }
     public string? Foto { get; set; }
     public string Nome { get; set; } = string.Empty;
     public DateOnly? DataNascimento { get; set; }
