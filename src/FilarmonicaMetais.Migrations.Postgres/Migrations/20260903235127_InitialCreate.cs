@@ -209,6 +209,25 @@ namespace FilarmonicaMetais.Migrations.Postgres.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "organizadores",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    Foto = table.Column<string>(type: "text", nullable: true),
+                    Nome = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: false),
+                    Cargo = table.Column<string>(type: "text", nullable: false),
+                    Bio = table.Column<string>(type: "text", nullable: false),
+                    Telefone = table.Column<string>(type: "text", nullable: false),
+                    Email = table.Column<string>(type: "text", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_organizadores", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "pedidos_apoio",
                 columns: table => new
                 {
@@ -392,6 +411,9 @@ namespace FilarmonicaMetais.Migrations.Postgres.Migrations
 
             migrationBuilder.DropTable(
                 name: "media_assets");
+
+            migrationBuilder.DropTable(
+                name: "organizadores");
 
             migrationBuilder.DropTable(
                 name: "pedidos_apoio");

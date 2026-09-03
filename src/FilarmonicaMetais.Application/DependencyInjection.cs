@@ -27,6 +27,7 @@ public static class DependencyInjection
         services.AddScoped<ICursoAdminService, CursoAdminService>();
         services.AddScoped<IDepoimentoAdminService, DepoimentoAdminService>();
         services.AddScoped<IAlunoAdminService, AlunoAdminService>();
+        services.AddScoped<IOrganizadorAdminService, OrganizadorAdminService>();
         services.AddScoped<IInteressadoAdminService, InteressadoAdminService>();
         services.AddScoped<IPedidoApoioAdminService, PedidoApoioAdminService>();
         services.AddScoped<IDoacaoAdminService, DoacaoAdminService>();

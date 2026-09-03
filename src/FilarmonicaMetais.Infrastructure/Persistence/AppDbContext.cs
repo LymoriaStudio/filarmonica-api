@@ -16,6 +16,7 @@ public class AppDbContext : DbContext
     public DbSet<Curso> Cursos => Set<Curso>();
     public DbSet<Depoimento> Depoimentos => Set<Depoimento>();
     public DbSet<Aluno> Alunos => Set<Aluno>();
+    public DbSet<Organizador> Organizadores => Set<Organizador>();
     public DbSet<Interessado> Interessados => Set<Interessado>();
     public DbSet<PedidoApoio> PedidosApoio => Set<PedidoApoio>();
     public DbSet<Doacao> Doacoes => Set<Doacao>();

@@ -18,6 +18,7 @@ public class UnitOfWork : IUnitOfWork
         Cursos = new CursoRepository(context);
         Depoimentos = new DepoimentoRepository(context);
         Alunos = new AlunoRepository(context);
+        Organizadores = new OrganizadorRepository(context);
         Interessados = new InteressadoRepository(context);
         PedidosApoio = new PedidoApoioRepository(context);
         Doacoes = new DoacaoRepository(context);
@@ -33,6 +34,7 @@ public class UnitOfWork : IUnitOfWork
     public ICursoRepository Cursos { get; }
     public IDepoimentoRepository Depoimentos { get; }
     public IAlunoRepository Alunos { get; }
+    public IOrganizadorRepository Organizadores { get; }
     public IInteressadoRepository Interessados { get; }
     public IPedidoApoioRepository PedidosApoio { get; }
     public IDoacaoRepository Doacoes { get; }

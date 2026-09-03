@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace FilarmonicaMetais.Migrations.Postgres.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260901004246_InitialCreate")]
+    [Migration("20260903235127_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -542,6 +542,47 @@ namespace FilarmonicaMetais.Migrations.Postgres.Migrations
                         .IsUnique();
 
                     b.ToTable("media_assets", (string)null);
+                });
+
+            modelBuilder.Entity("FilarmonicaMetais.Domain.Entities.Organizador", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Bio")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Cargo")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Foto")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)");
+
+                    b.Property<string>("Telefone")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("organizadores", (string)null);
                 });
 
             modelBuilder.Entity("FilarmonicaMetais.Domain.Entities.PedidoApoio", b =>

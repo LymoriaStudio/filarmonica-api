@@ -10,6 +10,7 @@ public interface IUnitOfWork
     ICursoRepository Cursos { get; }
     IDepoimentoRepository Depoimentos { get; }
     IAlunoRepository Alunos { get; }
+    IOrganizadorRepository Organizadores { get; }
     IInteressadoRepository Interessados { get; }
     IPedidoApoioRepository PedidosApoio { get; }
     IDoacaoRepository Doacoes { get; }
