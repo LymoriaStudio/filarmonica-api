@@ -25,6 +25,14 @@ public static class DependencyInjection
                     options.UseSqlServer(connectionString, sql => sql
                         .MigrationsAssembly("FilarmonicaMetais.Migrations.SqlServer"));
                     break;
+                case "mysql":
+                    // ServerVersion.AutoDetect abre uma conexão só pra detectar a versão do
+                    // servidor — evita fixar "8.0.x" no código quando o alvo real é o
+                    // MySQL 9.7.x do cliente (Pomelo entende variações menores da 8.x/9.x
+                    // sem trocar de dialect, mas o auto-detect deixa isso automático).
+                    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString), mysql => mysql
+                        .MigrationsAssembly("FilarmonicaMetais.Migrations.MySql"));
+                    break;
                 case "postgres":
                 default:
                     options.UseNpgsql(connectionString, npg => npg

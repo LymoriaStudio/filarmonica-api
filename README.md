@@ -2,8 +2,9 @@
 
 Backend próprio (ASP.NET Core 8) para substituir gradualmente o Supabase do
 projeto [filarmonica-figma](../filarmonica-figma). Arquitetura em camadas,
-banco desacoplado via EF Core — Postgres hoje (Railway), SQL Server no futuro
-(servidor do cliente), trocado só por configuração.
+banco desacoplado via EF Core — Postgres hoje (Railway), MySQL 9.7.x no
+servidor real do cliente, trocado só por configuração (SQL Server também
+mantido como alternativa já testada).
 
 Plano completo de migração, decisões de modelo de dados e justificativas:
 `filarmonica-figma/docs/PLANO-MIGRACAO-BACKEND.md`.
@@ -21,7 +22,8 @@ FilarmonicaMetais.sln
     ├── FilarmonicaMetais.Infrastructure/     EF Core, repositórios, JWT, storage
     ├── FilarmonicaMetais.Api/                Controllers ([ApiController])
     ├── FilarmonicaMetais.Migrations.Postgres/
-    └── FilarmonicaMetais.Migrations.SqlServer/
+    ├── FilarmonicaMetais.Migrations.SqlServer/
+    └── FilarmonicaMetais.Migrations.MySql/
 ```
 
 ## Estado atual
@@ -31,9 +33,9 @@ FilarmonicaMetais.sln
 - Infrastructure: `AppDbContext` + 13 configurations; 13 repositórios
   concretos + `UnitOfWork`; `JwtTokenService`, `BCryptPasswordHasher`,
   `CurrentUserService`, `LocalFileStorageService`; seleção de provider
-  Postgres/SqlServer por configuração
-- Migration `InitialCreate` gerada e validada (script SQL) em **Postgres e
-  SQL Server**, a partir do mesmo modelo
+  Postgres/SqlServer/MySQL por configuração (`Database:Provider`)
+- Migration `InitialCreate` gerada e validada (script SQL) em **Postgres,
+  SQL Server e MySQL**, a partir do mesmo modelo
 - **Auth**: login, refresh, logout, me, change-password (exige senha atual)
 - **Leitura pública**: banners ativos, instrumentos (com galeria), eventos
   (paginado), professores, cursos, depoimentos
@@ -100,4 +102,9 @@ dotnet ef migrations add NomeDaMigration \
   --output-dir Migrations
 ```
 
-Troque `Postgres` por `SqlServer` para gerar a migration equivalente no outro provider.
+Troque `Postgres` por `SqlServer` ou `MySql` para gerar a migration
+equivalente no outro provider.
+
+Para rodar a API contra MySQL, ajuste `Database:Provider` para `MySql` e a
+`ConnectionStrings:DefaultConnection` no `appsettings` (formato
+`Server=host;Database=db;User=usuario;Password=senha;`).

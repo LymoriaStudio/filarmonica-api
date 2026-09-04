@@ -16,6 +16,7 @@
     <ProjectReference Include="..\FilarmonicaMetais.Infrastructure\FilarmonicaMetais.Infrastructure.csproj" />
     <ProjectReference Include="..\FilarmonicaMetais.Migrations.Postgres\FilarmonicaMetais.Migrations.Postgres.csproj" />
     <ProjectReference Include="..\FilarmonicaMetais.Migrations.SqlServer\FilarmonicaMetais.Migrations.SqlServer.csproj" />
+    <ProjectReference Include="..\FilarmonicaMetais.Migrations.MySql\FilarmonicaMetais.Migrations.MySql.csproj" />
   </ItemGroup>
 
 </Project>

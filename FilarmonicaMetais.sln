@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FilarmonicaMetais.Migration
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FilarmonicaMetais.Migrations.SqlServer", "src\FilarmonicaMetais.Migrations.SqlServer\FilarmonicaMetais.Migrations.SqlServer.csproj", "{168F1BEA-E69E-4448-ADDA-9231C081BE1A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FilarmonicaMetais.Migrations.MySql", "src\FilarmonicaMetais.Migrations.MySql\FilarmonicaMetais.Migrations.MySql.csproj", "{A675889B-E0D3-47D4-8E5F-159344468D19}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -99,6 +101,18 @@ Global
 		{168F1BEA-E69E-4448-ADDA-9231C081BE1A}.Release|x64.Build.0 = Release|Any CPU
 		{168F1BEA-E69E-4448-ADDA-9231C081BE1A}.Release|x86.ActiveCfg = Release|Any CPU
 		{168F1BEA-E69E-4448-ADDA-9231C081BE1A}.Release|x86.Build.0 = Release|Any CPU
+		{A675889B-E0D3-47D4-8E5F-159344468D19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A675889B-E0D3-47D4-8E5F-159344468D19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A675889B-E0D3-47D4-8E5F-159344468D19}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{A675889B-E0D3-47D4-8E5F-159344468D19}.Debug|x64.Build.0 = Debug|Any CPU
+		{A675889B-E0D3-47D4-8E5F-159344468D19}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A675889B-E0D3-47D4-8E5F-159344468D19}.Debug|x86.Build.0 = Debug|Any CPU
+		{A675889B-E0D3-47D4-8E5F-159344468D19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A675889B-E0D3-47D4-8E5F-159344468D19}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A675889B-E0D3-47D4-8E5F-159344468D19}.Release|x64.ActiveCfg = Release|Any CPU
+		{A675889B-E0D3-47D4-8E5F-159344468D19}.Release|x64.Build.0 = Release|Any CPU
+		{A675889B-E0D3-47D4-8E5F-159344468D19}.Release|x86.ActiveCfg = Release|Any CPU
+		{A675889B-E0D3-47D4-8E5F-159344468D19}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -110,5 +124,6 @@ Global
 		{E11AB9CC-4DEC-43D4-9A5D-751580068E15} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
 		{5341D233-1140-49E5-BED5-E552675FCBC9} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
 		{168F1BEA-E69E-4448-ADDA-9231C081BE1A} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
+		{A675889B-E0D3-47D4-8E5F-159344468D19} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
 	EndGlobalSection
 EndGlobal
