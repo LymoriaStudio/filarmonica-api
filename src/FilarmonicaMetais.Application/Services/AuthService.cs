@@ -77,6 +77,29 @@ public class AuthService : IAuthService
         return ToDto(usuario);
     }
 
+    public async Task<UsuarioDto> UpdateMeAsync(Guid usuarioId, UpdateMeRequest request, CancellationToken ct = default)
+    {
+        var usuario = await _uow.Usuarios.GetByIdAsync(usuarioId, ct)
+            ?? throw new NotFoundException(nameof(Domain.Entities.Usuario), usuarioId);
+
+        if (!string.Equals(usuario.Email, request.Email, StringComparison.OrdinalIgnoreCase))
+        {
+            var existente = await _uow.Usuarios.GetByEmailAsync(request.Email, ct);
+            if (existente is not null && existente.Id != usuarioId)
+                throw new ConflictException($"Já existe um usuário com o e-mail '{request.Email}'.");
+            usuario.Email = request.Email;
+        }
+
+        usuario.FullName = request.FullName;
+        usuario.AvatarUrl = request.AvatarUrl;
+        usuario.UpdatedAt = DateTime.UtcNow;
+
+        _uow.Usuarios.Update(usuario);
+        await _uow.SaveChangesAsync(ct);
+
+        return ToDto(usuario);
+    }
+
     public async Task ChangePasswordAsync(Guid usuarioId, ChangePasswordRequest request, CancellationToken ct = default)
     {
         var usuario = await _uow.Usuarios.GetByIdAsync(usuarioId, ct)

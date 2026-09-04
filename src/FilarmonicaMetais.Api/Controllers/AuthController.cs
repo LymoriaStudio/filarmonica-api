@@ -47,6 +47,14 @@ public class AuthController : ControllerBase
         return Ok(usuario);
     }
 
+    [HttpPut("me")]
+    [Authorize]
+    public async Task<ActionResult<UsuarioDto>> UpdateMe(UpdateMeRequest request, CancellationToken ct)
+    {
+        var usuario = await _authService.UpdateMeAsync(GetUsuarioId(), request, ct);
+        return Ok(usuario);
+    }
+
     [HttpPost("change-password")]
     [Authorize]
     public async Task<IActionResult> ChangePassword(ChangePasswordRequest request, CancellationToken ct)
