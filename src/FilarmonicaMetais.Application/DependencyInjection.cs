@@ -33,6 +33,7 @@ public static class DependencyInjection
         services.AddScoped<IDoacaoAdminService, DoacaoAdminService>();
         services.AddScoped<IUsuarioAdminService, UsuarioAdminService>();
         services.AddScoped<IMediaAdminService, MediaAdminService>();
+        services.AddScoped<IAuditLogService, AuditLogService>();
 
         return services;
     }
