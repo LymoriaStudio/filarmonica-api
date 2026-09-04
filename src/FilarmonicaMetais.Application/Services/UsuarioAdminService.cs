@@ -74,6 +74,7 @@ public class UsuarioAdminService : IUsuarioAdminService
     private static UsuarioDto ToDto(Usuario u) => new()
     {
         Id = u.Id,
+        CreatedAt = u.CreatedAt,
         FullName = u.FullName,
         Email = u.Email,
         Role = u.Role.ToString(),
