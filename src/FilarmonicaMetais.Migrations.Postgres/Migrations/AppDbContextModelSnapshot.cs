@@ -25,7 +25,6 @@ namespace FilarmonicaMetais.Migrations.Postgres.Migrations
             modelBuilder.Entity("FilarmonicaMetais.Domain.Entities.Aluno", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
@@ -77,7 +76,6 @@ namespace FilarmonicaMetais.Migrations.Postgres.Migrations
             modelBuilder.Entity("FilarmonicaMetais.Domain.Entities.AuditLog", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
                     b.Property<string>("Action")
@@ -116,7 +114,6 @@ namespace FilarmonicaMetais.Migrations.Postgres.Migrations
             modelBuilder.Entity("FilarmonicaMetais.Domain.Entities.Banner", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
@@ -176,7 +173,6 @@ namespace FilarmonicaMetais.Migrations.Postgres.Migrations
             modelBuilder.Entity("FilarmonicaMetais.Domain.Entities.Curso", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
@@ -221,7 +217,6 @@ namespace FilarmonicaMetais.Migrations.Postgres.Migrations
             modelBuilder.Entity("FilarmonicaMetais.Domain.Entities.Depoimento", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
                     b.Property<bool>("Active")
@@ -264,7 +259,6 @@ namespace FilarmonicaMetais.Migrations.Postgres.Migrations
             modelBuilder.Entity("FilarmonicaMetais.Domain.Entities.Doacao", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
                     b.Property<string>("CpfCnpj")
@@ -307,7 +301,6 @@ namespace FilarmonicaMetais.Migrations.Postgres.Migrations
             modelBuilder.Entity("FilarmonicaMetais.Domain.Entities.Evento", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
                     b.Property<string>("Categoria")
@@ -375,7 +368,6 @@ namespace FilarmonicaMetais.Migrations.Postgres.Migrations
             modelBuilder.Entity("FilarmonicaMetais.Domain.Entities.Instrumento", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
                     b.Property<string>("Cor")
@@ -425,7 +417,6 @@ namespace FilarmonicaMetais.Migrations.Postgres.Migrations
             modelBuilder.Entity("FilarmonicaMetais.Domain.Entities.InstrumentoFoto", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
                     b.Property<Guid>("InstrumentoId")
@@ -449,7 +440,6 @@ namespace FilarmonicaMetais.Migrations.Postgres.Migrations
             modelBuilder.Entity("FilarmonicaMetais.Domain.Entities.Interessado", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
@@ -498,7 +488,6 @@ namespace FilarmonicaMetais.Migrations.Postgres.Migrations
             modelBuilder.Entity("FilarmonicaMetais.Domain.Entities.MediaAsset", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
                     b.Property<string>("CaminhoRelativo")
@@ -544,7 +533,6 @@ namespace FilarmonicaMetais.Migrations.Postgres.Migrations
             modelBuilder.Entity("FilarmonicaMetais.Domain.Entities.Organizador", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
                     b.Property<string>("Bio")
@@ -585,7 +573,6 @@ namespace FilarmonicaMetais.Migrations.Postgres.Migrations
             modelBuilder.Entity("FilarmonicaMetais.Domain.Entities.PedidoApoio", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
@@ -634,7 +621,6 @@ namespace FilarmonicaMetais.Migrations.Postgres.Migrations
             modelBuilder.Entity("FilarmonicaMetais.Domain.Entities.Professor", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
                     b.Property<string>("BioCompleta")
@@ -691,7 +677,6 @@ namespace FilarmonicaMetais.Migrations.Postgres.Migrations
             modelBuilder.Entity("FilarmonicaMetais.Domain.Entities.Usuario", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
                     b.Property<string>("AvatarUrl")
