@@ -9,6 +9,7 @@ COPY ["src/FilarmonicaMetais.Domain/FilarmonicaMetais.Domain.csproj", "src/Filar
 COPY ["src/FilarmonicaMetais.Infrastructure/FilarmonicaMetais.Infrastructure.csproj", "src/FilarmonicaMetais.Infrastructure/"]
 COPY ["src/FilarmonicaMetais.Migrations.Postgres/FilarmonicaMetais.Migrations.Postgres.csproj", "src/FilarmonicaMetais.Migrations.Postgres/"]
 COPY ["src/FilarmonicaMetais.Migrations.SqlServer/FilarmonicaMetais.Migrations.SqlServer.csproj", "src/FilarmonicaMetais.Migrations.SqlServer/"]
+COPY ["src/FilarmonicaMetais.Migrations.MySql/FilarmonicaMetais.Migrations.MySql.csproj", "src/FilarmonicaMetais.Migrations.MySql/"]
 
 RUN dotnet restore "src/FilarmonicaMetais.Api/FilarmonicaMetais.Api.csproj"
 
